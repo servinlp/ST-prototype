@@ -1,24 +1,19 @@
 <template>
 <div id="app">
-	<div class="story-container">
-		<story></story>
-	</div>
+	<router-view></router-view>
 </div>
 </template>
 
 <script>
-import story from './components/story'
 export default {
   name: 'app',
-  components: {
-    story
-  }
 }
 </script>
 
 <style lang="scss">
 body {
 	margin: 0;
+	background: #232323;
 }
 #app {
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -28,11 +23,7 @@ body {
   color: #2c3e50;
 }
 
-.story-container {
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-content: center;
+button {
+	cursor: pointer;
 }
 </style>
