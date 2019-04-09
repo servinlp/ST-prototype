@@ -6,7 +6,24 @@
 
 <script>
 export default {
-  name: 'app',
+	name: 'app',
+	mounted() {
+		this.updateStorage()
+		console.log('set storage event')
+		document.addEventListener('storage', (e) => {
+			console.log('hello', e)
+		})
+		document.addEventListener('storage', () => this.updateStorage())
+	},
+	destroyed() {
+		document.removeEventListener('storage', this.updateStorage)
+	},
+	methods: {
+		updateStorage() {
+			console.log('run updateStorage')
+			this.$store.commit('updateStore');
+		}
+	}
 }
 </script>
 

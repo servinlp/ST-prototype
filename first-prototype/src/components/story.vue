@@ -6,6 +6,8 @@
 
 <script>
 import slides from './slides.js'
+import { mapState } from 'vuex'
+
 export default {
 	data() {
 		return {
@@ -21,7 +23,7 @@ export default {
 			this.removeLinkEvents()
 			this.slideIndex = index
 			this.$router.push({
-				path: '/', query: { slideIndex: index }
+				query: { slideIndex: index }
 			})
 			this.$nextTick(() => this.setLinkEvents())
 		},
@@ -41,8 +43,14 @@ export default {
 	watch: {
 		'$route.query.slideIndex'(to) {
 			this.goToSlide(to || '1')
+		},
+		externalView(to, from) {
+			console.log('externalView', to, from)
 		}
-	}
+	},
+	computed: mapState([
+		'externalView'
+	])
 }
 </script>
 

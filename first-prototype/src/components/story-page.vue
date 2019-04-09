@@ -1,26 +1,48 @@
 <template>
-<div class="story-container">
-	<story ref="story"></story>
-	<full-screen v-if="story" v-bind:target="story"></full-screen>
+<div>
+	<div v-if="!externalView" class="story-container">
+		<story ref="story"></story>
+		<full-screen v-if="story" v-bind:target="story"></full-screen>
+		<enter-story-view></enter-story-view>
+	</div>
+	<div v-else>
+		<story-controls-screen></story-controls-screen>
+	</div>
 </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import story from './story'
 import fullScreen from './full-screen'
+import enterStoryView from './enter-story-view'
+import storyControlsScreen from './story-controls-screen'
+
 export default {
 	components: {
 		story,
-		fullScreen
+		fullScreen,
+		enterStoryView,
+		storyControlsScreen,
 	},
 	data() {
 		return {
-			story: null
+			story: null,
+			// externalView: false,
 		}
 	},
 	mounted() {
 		this.story = this.$refs.story
 	},
+	watch: {
+		externalView(to, from) {
+			console.log('externalView', to, from)
+		}
+	},
+	computed: mapState([
+		'externalView'
+	])
 }
 </script>
 
