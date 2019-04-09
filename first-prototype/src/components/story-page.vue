@@ -29,15 +29,12 @@ export default {
 	data() {
 		return {
 			story: null,
-			// externalView: false,
 		}
 	},
 	mounted() {
 		this.story = this.$refs.story
-	},
-	watch: {
-		externalView(to, from) {
-			console.log('externalView', to, from)
+		if (this.$route.params.room) {
+			this.$socket.emit('joinRoom', {id: this.$route.params.room})
 		}
 	},
 	computed: mapState([

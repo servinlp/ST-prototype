@@ -2,7 +2,6 @@
 <div class="story-container">
 	<story ref="story"></story>
 	<full-screen v-if="story" v-bind:target="story"></full-screen>
-	<p v-if="!externalView">hoi</p>
 </div>
 </template>
 
@@ -23,10 +22,18 @@ export default {
 	},
 	mounted() {
 		this.story = this.$refs.story
+		if (this.$route.params.room) {
+			this.$socket.emit('joinRoom', {hi: 'asdas', id: this.$route.params.room})
+		}
 	},
-	computed: mapState([
-		'externalView'
-	])
+	sockets: {
+		closeStoryView() {
+			window.close()
+		}
+	},
+	computed: mapState({
+		externalView: state => state.n.state.externalView
+	})
 }
 </script>
 

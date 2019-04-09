@@ -62,6 +62,9 @@ export default {
 			max-height: 100vh;
 			width: auto;
 			height: auto;
+			text {
+				font-family: inherit !important;
+			}
 		}
 		[data-link] {
 			cursor: pointer;
