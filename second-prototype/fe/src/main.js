@@ -8,6 +8,7 @@ import StoryPage from './components/story-page'
 import externalStoryView  from './components/external-story-view'
 
 import slides from './components/slides.js'
+import structure from './components/structure.js'
 
 // First method:
 // https://stackoverflow.com/questions/2236828/javascript-communication-between-tabs-windows-with-same-origin/12514384#12514384
@@ -35,6 +36,7 @@ const store = new Vuex.Store({
 	state: {
 		externalView: false,
 		slides,
+		structure,
 		slideIndex: null,
 	},
 	mutations: {

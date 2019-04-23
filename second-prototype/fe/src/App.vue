@@ -29,4 +29,8 @@ body {
 button {
 	cursor: pointer;
 }
+
+:focus {
+	outline: none;
+}
 </style>

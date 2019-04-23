@@ -1,5 +1,5 @@
 <template>
-<div class="story">
+<div class="story" tabindex="0">
 	<div ref="slide" v-html="slides[slideIndex].slide"></div>
 </div>
 </template>
