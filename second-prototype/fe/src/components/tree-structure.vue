@@ -6,6 +6,7 @@
 
 <script>
 import treeNodes from './tree-node'
+import structure from './structure'
 
 export default {
 	components: {
@@ -13,35 +14,7 @@ export default {
 	},
 	data() {
 		return {
-			structure: [
-				{
-					current: '1',
-					children: [
-						{
-							current: '2.1',
-							children: [
-								{
-									current: '2.1.1'
-								}
-							]
-						},
-						{
-							current: '2.2'
-						},
-						{
-							current: '2.3',
-							children: [
-								{
-									current: '2.3.1'
-								},
-								{
-									current: '2.3.2'
-								}
-							]
-						}
-					]
-				}
-			]
+			structure
 		}
 	}
 }

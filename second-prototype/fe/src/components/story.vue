@@ -78,5 +78,15 @@ export default {
 		[data-link] {
 			cursor: pointer;
 		}
+
+		[data-link].BoundingBox {
+			position: relative;
+			z-index: 1000;
+			fill: rgba(0,0,0,0);
+		}
+
+		.TextShape {
+			pointer-events: none;
+		}
 	}
 </style>
