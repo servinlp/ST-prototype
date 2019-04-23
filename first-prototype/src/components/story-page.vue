@@ -1,11 +1,14 @@
 <template>
 <div>
 	<div v-if="!externalView" class="story-container">
-		<story ref="story"></story>
+		<story v-if="slideIndex" ref="story"></story>
 		<full-screen v-if="story" v-bind:target="story"></full-screen>
 		<enter-story-view></enter-story-view>
 	</div>
-	<div v-else>
+	<div v-else class="presentator-view">
+		<story v-if="slideIndex" ref="story"></story>
+		<tree-structure></tree-structure>
+		<story-notes></story-notes>
 		<story-controls-screen></story-controls-screen>
 	</div>
 </div>
@@ -18,6 +21,8 @@ import story from './story'
 import fullScreen from './full-screen'
 import enterStoryView from './enter-story-view'
 import storyControlsScreen from './story-controls-screen'
+import storyNotes from './story-notes'
+import treeStructure from './tree-structure'
 
 export default {
 	components: {
@@ -25,6 +30,8 @@ export default {
 		fullScreen,
 		enterStoryView,
 		storyControlsScreen,
+		storyNotes,
+		treeStructure,
 	},
 	data() {
 		return {
@@ -32,13 +39,19 @@ export default {
 		}
 	},
 	mounted() {
-		this.story = this.$refs.story
+		this.$nextTick(() => {
+			this.$nextTick(() => {
+				this.story = this.$refs.story
+				console.log(this.story, this.slideIndex)
+			})
+		})
 		if (this.$route.params.room) {
 			this.$socket.emit('joinRoom', {id: this.$route.params.room})
 		}
 	},
 	computed: mapState([
-		'externalView'
+		'externalView',
+		'slideIndex'
 	])
 }
 </script>
@@ -50,6 +63,22 @@ export default {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+}
+.presentator-view {
+	font-size: 0;
+	.story {
+		width: 50%;
+		display: inline-block;
+		vertical-align: top;
+	}
+	.tree-structure {
+		width: 50%;
+		height: 70vh;
+		display: inline-block;
+	}
+	.notes {
+		// flex: 0 0 100%;
+	}
 }
 </style>
 

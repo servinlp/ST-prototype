@@ -7,6 +7,8 @@ import VueSocketIO from 'vue-socket.io'
 import StoryPage from './components/story-page'
 import externalStoryView  from './components/external-story-view'
 
+import slides from './components/slides.js'
+
 // First method:
 // https://stackoverflow.com/questions/2236828/javascript-communication-between-tabs-windows-with-same-origin/12514384#12514384
 // Reason it doesn't work: https://stackoverflow.com/a/35867792
@@ -31,10 +33,12 @@ const router = new VueRouter({
 
 const store = new Vuex.Store({
 	state: {
-		externalView: false
+		externalView: false,
+		slides,
+		slideIndex: null,
 	},
 	mutations: {
-		toggleExternalView(state) {
+		toggleExternalView() {
 			this.state.externalView = !this.state.externalView
 		},
 		updateStore(state, payload) {

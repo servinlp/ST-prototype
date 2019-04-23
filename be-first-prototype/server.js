@@ -19,6 +19,14 @@ io.on('connection', function(socket){
 		socket.broadcast.to(data.id).emit('closeStoryView')
 	})
 
+	socket.on('goToSlide', data => {
+		socket.broadcast.to(data.id).emit('goToSlide', data.index)
+	})
+
+	socket.on('leaveRoom', data => {
+		console.log('leaveRoom', data)
+	})
+
 	socket.on('disconnect', () => console.log('disconnect'))
 });
 

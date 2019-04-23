@@ -7,6 +7,10 @@
 <script>
 export default {
 	name: 'app',
+	mounted() {
+		this.$store.state.slideIndex = this.$route.query.slideIndex || '1'
+		this.$store.state.externalView = this.$route.params.room
+	},
 }
 </script>
 
@@ -19,7 +23,6 @@ body {
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 

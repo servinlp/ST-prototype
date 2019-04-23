@@ -1,27 +1,37 @@
 <template>
 <div class="story">
-	<div ref="slide" v-html="slides[slideIndex]"></div>
+	<div ref="slide" v-html="slides[slideIndex].slide"></div>
 </div>
 </template>
 
 <script>
-import slides from './slides.js'
+
 import { mapState } from 'vuex'
 
 export default {
 	data() {
 		return {
-			slides,
-			slideIndex: this.$route.query.slideIndex || '1',
+			// slides,
+			// slideIndex: this.$route.query.slideIndex || '1',
 		}
 	},
 	mounted() {
 		this.$nextTick(() => this.setLinkEvents())
 	},
+	sockets: {
+		goToSlide(index) {
+			this.goToSlide(index)
+		}
+	},
 	methods: {
 		goToSlide(index) {
+			if (index === this.$store.state.slideIndex) return
 			this.removeLinkEvents()
-			this.slideIndex = index
+			this.$socket.emit('goToSlide', {
+				id: this.$route.params.room,
+				index
+			})
+			this.$store.state.slideIndex = index
 			this.$router.push({
 				query: { slideIndex: index }
 			})
@@ -44,12 +54,11 @@ export default {
 		'$route.query.slideIndex'(to) {
 			this.goToSlide(to || '1')
 		},
-		externalView(to, from) {
-			console.log('externalView', to, from)
-		}
 	},
 	computed: mapState([
-		'externalView'
+		'externalView',
+		'slides',
+		'slideIndex',
 	])
 }
 </script>

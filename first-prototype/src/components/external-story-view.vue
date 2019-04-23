@@ -1,6 +1,6 @@
 <template>
 <div class="story-container">
-	<story ref="story"></story>
+	<story v-if="slideIndex" ref="story"></story>
 	<full-screen v-if="story" v-bind:target="story"></full-screen>
 </div>
 </template>
@@ -21,19 +21,25 @@ export default {
 		}
 	},
 	mounted() {
-		this.story = this.$refs.story
 		if (this.$route.params.room) {
-			this.$socket.emit('joinRoom', {hi: 'asdas', id: this.$route.params.room})
+			this.$socket.emit('joinRoom', {id: this.$route.params.room})
 		}
+		this.$nextTick(() => {
+			this.$nextTick(() => {
+				console.log(this.$refs.story)
+				this.story = this.$refs.story
+			})
+		})
 	},
 	sockets: {
 		closeStoryView() {
 			window.close()
 		}
 	},
-	computed: mapState({
-		externalView: state => state.n.state.externalView
-	})
+	computed: mapState([
+		'externalView',
+		'slideIndex',
+	])
 }
 </script>
 
