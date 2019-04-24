@@ -22,6 +22,9 @@ import structure from './components/structure.js'
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
+const apiUrl = 'http://localhost:3000'
+// const apiUrl = 'http://api.maddev.nl/'
+
 const routes = [
 	{ path: '/', component: StoryPage },
 	{ name: 'story', path: '/:room', component: StoryPage },
@@ -43,6 +46,9 @@ const store = new Vuex.Store({
 		toggleExternalView() {
 			this.state.externalView = !this.state.externalView
 		},
+		removeExternalView() {
+			this.state.externalView = false
+		},
 		updateStore(state, payload) {
 			state.n = payload
 		}
@@ -56,7 +62,7 @@ const store = new Vuex.Store({
 
 Vue.use(new VueSocketIO({
     debug: true,
-    connection: 'http://localhost:3000',
+    connection: apiUrl,
     vuex: {
         store,
         actionPrefix: 'SOCKET_',
@@ -71,3 +77,7 @@ new Vue({
 	store,
 	render: h => h(App),
 }).$mount('#app')
+
+export {
+	apiUrl
+}

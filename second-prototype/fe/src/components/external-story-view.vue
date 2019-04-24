@@ -1,19 +1,20 @@
 <template>
 <div class="story-container">
-	<story v-if="slideIndex" ref="story"></story>
-	<full-screen v-if="story" v-bind:target="story"></full-screen>
+	<presentator-view></presentator-view>
 </div>
 </template>
 
 <script>
 import story from './story'
 import fullScreen from './full-screen'
+import presentatorView from './presentator-view'
 import { mapState } from 'vuex'
 
 export default {
 	components: {
 		story,
-		fullScreen
+		fullScreen,
+		presentatorView
 	},
 	data() {
 		return {
@@ -26,7 +27,6 @@ export default {
 		}
 		this.$nextTick(() => {
 			this.$nextTick(() => {
-				console.log(this.$refs.story)
 				this.story = this.$refs.story
 			})
 		})

@@ -5,11 +5,9 @@
 		<full-screen v-if="story" v-bind:target="story"></full-screen>
 		<enter-story-view></enter-story-view>
 	</div>
-	<div v-else class="presentator-view">
+	<div v-else class="story-container">
 		<story v-if="slideIndex" ref="story"></story>
-		<tree-structure></tree-structure>
-		<story-notes></story-notes>
-		<story-controls-screen></story-controls-screen>
+		<full-screen v-if="story" v-bind:target="story"></full-screen>
 	</div>
 </div>
 </template>
@@ -36,13 +34,30 @@ export default {
 	data() {
 		return {
 			story: null,
+			prevRoute: null,
 		}
+	},
+	sockets: {
+		joinedRoom(data) {
+			this.$router.push({
+				name: 'story',
+				params: { room: data.id },
+				query: { slideIndex: this.$route.query.slideIndex },
+			})
+		},
+		closeStoryView() {
+			this.$router.push({
+				name: 'story',
+				params: { room: '' },
+				query: { slideIndex: this.$route.query.slideIndex },
+			})
+			this.$store.commit('removeExternalView')
+		},
 	},
 	mounted() {
 		this.$nextTick(() => {
 			this.$nextTick(() => {
 				this.story = this.$refs.story
-				console.log(this.story, this.slideIndex)
 			})
 		})
 		if (this.$route.params.room) {
@@ -51,15 +66,27 @@ export default {
 	},
 	methods: {
 		goBack() {
-			this.$router.go(-1)
+			if (this.prevRoute) return
+			this.$router.push(this.prevRoute, () => {
+				if (this.$router.params.room) {
+					this.$socket.emit('goToSlide', {
+						id: this.$route.params.room,
+						index: this.$route.query.slideIndex
+					})
+				}
+			})
 		},
 		goForward() {
 			const layer = this.findCurrentStructure(this.$store.state.structure)
-			if (layer.children.length === 1) {
-				this.$router.push({
-					query: { slideIndex: layer.children[0].current }
-				})
-			}
+			if (layer.children.length !== 1) return
+			const index = layer.children[0].current
+			this.$router.push({
+				query: { slideIndex: index }
+			})
+			this.$socket.emit('goToSlide', {
+				id: this.$route.params.room,
+				index
+			})
 		},
 		findCurrentStructure(structure) {
 			let l
@@ -73,6 +100,11 @@ export default {
 			})
 
 			return l
+		},
+	},
+	watch: {
+		'$route'(to, from) {
+			this.prevRoute = from
 		},
 	},
 	computed: mapState([
@@ -89,22 +121,6 @@ export default {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-}
-.presentator-view {
-	font-size: 0;
-	.story {
-		width: 50%;
-		display: inline-block;
-		vertical-align: top;
-	}
-	.tree-structure {
-		width: 50%;
-		height: 70vh;
-		display: inline-block;
-	}
-	.notes {
-		// flex: 0 0 100%;
-	}
 }
 </style>
 
