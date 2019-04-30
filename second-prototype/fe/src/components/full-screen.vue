@@ -23,7 +23,7 @@ export default {
 .fullscreen {
 	position: fixed;
 	bottom: 20px;
-	right: 60px;
+	right: 20px;
 	background: none;
 	border: none;
 	padding: 0;
