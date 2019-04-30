@@ -41,6 +41,8 @@ const store = new Vuex.Store({
 		slides,
 		structure,
 		slideIndex: null,
+		treeStructureActiveNode: null,
+		treeStructureActiveTree: null,
 	},
 	mutations: {
 		toggleExternalView() {
