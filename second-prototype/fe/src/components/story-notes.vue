@@ -1,5 +1,5 @@
 <template>
-<div class="notes">
+<div class="notes" v-if="slideIndex">
 	<button class="smaller" @click="smaller">A</button>
 	<button class="larger" @click="larger">A</button>
 	<p :style="notesStyle">{{slides[slideIndex].notes}}</p>
@@ -36,29 +36,32 @@ export default {
 
 <style lang="scss">
 .notes {
-	height: 30vh;
+	position: relative;
+	width: 50%;
 
 	.smaller,
 	.larger {
-		color: white;
+		position: absolute;
 		background: none;
 		border: none;
 		text-decoration: underline;
+		z-index: 1;
 	}
 	.smaller {
+		right: 20px;
 		font-size: 0.8rem;
 	}
 	.larger {
+		right: 0;
 		font-size: 1.2rem;
 	}
 	p {
-		height: calc(100% - 2rem);
+		height: 100vh;
 		overflow: auto;
 		background: white;
-		padding: 1rem;
+		padding: 1rem 2rem 1rem 1rem;
 		box-sizing: border-box;
-		margin-bottom: 0;
-		margin-top: 1rem;
+		margin: 0;
 	}
 }
 </style>
