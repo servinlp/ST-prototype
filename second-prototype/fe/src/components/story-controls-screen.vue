@@ -10,12 +10,6 @@ export default {
 	components: {
 		enterStoryView,
 	},
-	mounted() {
-		// document.addEventListener('storage', )
-	},
-	destory() {
-		// document.removeEventListener('storage', )
-	},
 	methods: {
 		storageSwitch() {}
 	}
@@ -24,6 +18,6 @@ export default {
 
 <style lang="scss">
 .story-controls-screen {
-
+	position: absolute;
 }
 </style>

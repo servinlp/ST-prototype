@@ -1,7 +1,6 @@
 <template>
 <div class="presentator-view">
-	<story v-if="slideIndex" ref="story"></story>
-	<!-- <tree-structure></tree-structure> -->
+	<tree-structure></tree-structure>
 	<story-notes></story-notes>
 	<story-controls-screen></story-controls-screen>
 </div>
@@ -43,18 +42,13 @@ export default {
 <style lang="scss">
 .presentator-view {
 	font-size: 0;
+	display: flex;
+	justify-content: space-between;
+	
 	.story {
 		width: 50%;
 		display: inline-block;
 		vertical-align: top;
-	}
-	.tree-structure {
-		width: 50%;
-		height: 70vh;
-		display: inline-block;
-	}
-	.notes {
-		// flex: 0 0 100%;
 	}
 }
 </style>
