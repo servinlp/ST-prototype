@@ -1,12 +1,8 @@
 <template>
 <div v-on:keydown.delete="goBack" v-on:keydown.left="goBack" v-on:keydown.right="goForward">
-	<div v-if="!externalView" class="story-container">
+	<div class="story-container">
 		<story v-if="slideIndex" ref="story"></story>
-		<full-screen v-if="story" v-bind:target="story"></full-screen>
-		<enter-story-view></enter-story-view>
-	</div>
-	<div v-else class="story-container">
-		<story v-if="slideIndex" ref="story"></story>
+		<enter-story-view v-if="!externalView"></enter-story-view>
 		<full-screen v-if="story" v-bind:target="story"></full-screen>
 	</div>
 </div>
