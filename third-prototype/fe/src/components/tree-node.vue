@@ -17,9 +17,18 @@ export default {
 			this.$store.state.treeStructureActiveTree = this.structure
 		}
 	},
+	sockets: {
+		goToSlide(index) {
+			if (index === this.structure.current) {
+				this.goToSlide(index)
+			}
+		}
+	},
 	methods: {
-		goToSlide() {
-			const index = this.structure.current
+		goToSlide(index) {
+			if (typeof index !== 'string' ) {
+				index = this.structure.current
+			}
 			this.$store.state.treeStructureActiveNode = this.$refs.slide.querySelector('svg')
 			this.$store.state.treeStructureActiveTree = this.structure
 			this.$store.state.slideIndex = index
