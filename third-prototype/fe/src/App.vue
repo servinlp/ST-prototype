@@ -9,7 +9,6 @@ export default {
 	name: 'app',
 	mounted() {
 		this.$store.state.slideIndex = this.$route.query.slideIndex || '1'
-		this.$store.state.externalView = this.$route.params.room
 	},
 }
 </script>

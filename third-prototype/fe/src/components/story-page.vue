@@ -51,6 +51,16 @@ export default {
 		},
 	},
 	mounted() {
+		if (this.$route.params.room) {
+			this.$router.replace({
+				name: 'story-home',
+				query: {
+					slideIndex: this.$route.query.slideIndex
+				},
+			})
+		}
+		this.$store.state.externalView = this.$route.params.room
+
 		this.$nextTick(() => {
 			this.$nextTick(() => {
 				this.story = this.$refs.story

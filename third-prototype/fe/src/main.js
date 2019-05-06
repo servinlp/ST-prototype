@@ -22,11 +22,11 @@ import structure from './components/structure.js'
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
-//const apiUrl = 'http://localhost:3000'
-const apiUrl = 'http://api.maddev.nl/'
+const apiUrl = 'http://localhost:3000'
+// const apiUrl = 'http://api.maddev.nl/'
 
 const routes = [
-	{ path: '/', component: StoryPage },
+	{ name: 'story-home', path: '/', component: StoryPage },
 	{ name: 'story', path: '/:room', component: StoryPage },
 	{ name: 'story-view', path: '/:room/external-view', component: externalStoryView }
 ]
