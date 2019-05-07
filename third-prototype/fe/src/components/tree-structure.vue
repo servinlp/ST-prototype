@@ -34,6 +34,7 @@ export default {
 			structure,
 			largestLevel: null,
 			zoomLevel: null,
+			tmpZoomLevel: null,
 			oldTreeNode: null,
 			oldTreeStructure: null,
 		}
@@ -66,17 +67,18 @@ export default {
 			}
 		},
 		toggleFullscreen() {
-			if (this.oldTreeNode) {
-				this.$store.state.treeStructureActiveTree = this.oldTreeStructure
-				this.$store.state.treeStructureActiveNode = this.oldTreeNode
-				this.oldTreeStructure = null
-				this.oldTreeNode = null
+			if (this.zoomLevel === 1) {
+				this.outFullscreen()
 			} else {
-				this.oldTreeStructure = this.$store.state.treeStructureActiveTree
-				this.oldTreeNode = this.$store.state.treeStructureActiveNode
-				this.$store.state.treeStructureActiveTree = null
-				this.$store.state.treeStructureActiveNode = null
+				this.goFullscreen()
 			}
+		},
+		outFullscreen() {
+			this.zoomLevel = this.tmpZoomLevel
+		},
+		goFullscreen() {
+			this.tmpZoomLevel = this.zoomLevel
+			this.zoomLevel = 1
 		}
 	},
 	watch: {

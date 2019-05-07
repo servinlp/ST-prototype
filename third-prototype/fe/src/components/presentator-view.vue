@@ -1,9 +1,13 @@
 <template>
-<div class="presentator-view"
-	@dragover="dragResourceOver">
+<div class="presentator-view" tabindex="0"
+	@dragover="dragResourceOver"
+	@keydown.ctrl.187.prevent="increase"
+	@keydown.ctrl.189.prevent="decrease"
+	@keydown.ctrl.48.prevent="toggleFullscreen"
+	@keydown.ctrl.49.prevent="outFullscreen">
 	<resource-viewer v-if="fileViewer" :file="fileViewer"></resource-viewer>
 	<drag-and-drop-resources v-if="showDrop" @getFile="gotFile"></drag-and-drop-resources>
-	<tree-structure></tree-structure>
+	<tree-structure ref="tree"></tree-structure>
 	<story-notes></story-notes>
 	<story-controls-screen></story-controls-screen>
 </div>
@@ -65,6 +69,15 @@ export default {
 			}).then(res => res.json())
 			.then(res => console.log(res))
 			.catch(err => console.error(err))
+		},
+		increase() {
+			this.$refs.tree.zoomIn()
+		},
+		decrease() {
+			this.$refs.tree.zoomOut()
+		},
+		toggleFullscreen() {
+			this.$refs.tree.toggleFullscreen()
 		},
 	},
 	computed: mapState([
