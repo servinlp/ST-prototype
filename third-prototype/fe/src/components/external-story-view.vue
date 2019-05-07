@@ -25,6 +25,7 @@ export default {
 		if (this.$route.params.room) {
 			this.$socket.emit('joinRoom', {id: this.$route.params.room})
 		}
+		this.$store.state.externalView = this.$route.params.room
 		this.$nextTick(() => {
 			this.$nextTick(() => {
 				this.story = this.$refs.story
