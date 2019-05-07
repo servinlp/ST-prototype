@@ -22,7 +22,7 @@ import structure from './components/structure.js'
 Vue.use(VueRouter)
 Vue.use(Vuex)
 
-const apiUrl = 'http://localhost:3000'
+const apiUrl = 'http://localhost:3000/'
 // const apiUrl = 'http://api.maddev.nl/'
 
 const routes = [
