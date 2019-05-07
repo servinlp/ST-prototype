@@ -19,5 +19,14 @@ export default {
 <style lang="scss">
 .story-controls-screen {
 	position: absolute;
+
+	.enter-story-view {
+		bottom: 0;
+    	right: 0;
+		
+		svg {
+			fill: #2c3e50;
+		}
+	} 
 }
 </style>
