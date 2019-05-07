@@ -33,7 +33,7 @@ export default {
 		return {
 			structure,
 			largestLevel: null,
-			zoomLevel: {},
+			zoomLevel: null,
 			oldTreeNode: null,
 			oldTreeStructure: null,
 		}
@@ -51,20 +51,18 @@ export default {
 		},
 		zoomOut() {
 			const {scale} = this.$store.state.treeStructureActiveTree
-			if (!this.zoomLevel[scale]) {
-				this.$set(this.zoomLevel, scale, scale)
-			}
-			if (this.zoomLevel[scale] !== 1) {
-				this.$set(this.zoomLevel, scale, this.zoomLevel[scale] - 1)
+			if (!this.zoomLevel) {
+				this.zoomLevel = scale - 1
+			} else {
+				this.zoomLevel -= 1
 			}
 		},
 		zoomIn() {
 			const {scale} = this.$store.state.treeStructureActiveTree
-			if (!this.zoomLevel[scale]) {
-				this.$set(this.zoomLevel, scale, scale)
-			}
-			if (this.zoomLevel[scale] !== 10) {
-				this.$set(this.zoomLevel, scale, this.zoomLevel[scale] + 1)
+			if (!this.zoomLevel) {
+				this.zoomLevel = scale + 1
+			} else {
+				this.zoomLevel += 1
 			}
 		},
 		toggleFullscreen() {
@@ -88,10 +86,7 @@ export default {
 		},
 	},
 	computed: mapState({
-		newScale(state) {
-			const { scale } = state.treeStructureActiveTree
-			return this.zoomLevel[scale] || scale
-		},
+		treeStructureActiveTree: (state) => state.treeStructureActiveTree,
 		scaleStyles(state) {
 			if (!state.treeStructureActiveNode) {
 				return {
@@ -99,12 +94,19 @@ export default {
 				}
 			}
 
-			const { translate } = state.treeStructureActiveTree
+			const { scale } = state.treeStructureActiveTree
+			const newScale = this.zoomLevel || scale
 			return {
-				transform: `${translate} scale(${this.newScale})`,
+				transform: `scale(${newScale})`,
+				'transform-origin': state.treeStructureActiveTree['transform-origin']
 			}
 		}
 	}),
+	watch: {
+		treeStructureActiveTree() {
+			this.zoomLevel = null
+		}
+	},
 }
 </script>
 
