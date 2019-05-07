@@ -3,13 +3,18 @@
 	<button class="smaller" @click="smaller">A</button>
 	<button class="larger" @click="larger">A</button>
 	<p :style="notesStyle">{{slides[slideIndex].notes}}</p>
+	<presenter-timer></presenter-timer>
 </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import presenterTimer from './presenter-timer'
 
 export default {
+	components: {
+		presenterTimer,
+	},
 	data() {
 		return {
 			fontSize: 1,
