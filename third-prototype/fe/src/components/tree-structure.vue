@@ -13,8 +13,9 @@
 			<span class="mdc-fab__label">Zoom in</span>
 		</button>
 		<button class="mdc-fab mdc-fab--mini" @click="toggleFullscreen">
-			<span class="material-icons mdc-fab__icon">zoom_out_map</span>
-			<span class="mdc-fab__label">Fullscreen</span>
+			<span v-if="zoomLevel !== 1" class="material-icons mdc-fab__icon">zoom_out_map</span>
+			<svg v-else class="mdc-fab__icon" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24"><defs><path id="SVGID_1_" d="M0 0h24v24H0z"/></defs><clipPath id="SVGID_2_"><use xlink:href="#SVGID_1_" overflow="visible"/></clipPath><path d="M20.4 9.6l-2.3-2.3L21 4.4 19.6 3l-2.9 2.9-2.3-2.3v6h6zm-10.8-6L7.3 5.9 4.4 3 3 4.4l2.9 2.9-2.3 2.3h6v-6zm-6 10.8l2.3 2.3L3 19.6 4.4 21l2.9-2.9 2.3 2.3v-6h-6zm10.8 6l2.3-2.3 2.9 2.9 1.4-1.4-2.9-2.9 2.3-2.3h-6v6z" clip-path="url(#SVGID_2_)"/><g><defs><path id="SVGID_3_" d="M0 0h24v24H0z"/></defs><clipPath id="SVGID_4_"><use xlink:href="#SVGID_3_" overflow="visible"/></clipPath><path d="M0 0h24v24H0V0z" clip-path="url(#SVGID_4_)" fill="none"/></g></svg>
+			<span v-if="zoomLevel !== 1" class="mdc-fab__label">Fullscreen</span>
 		</button>
 	</div>
 </div>	
@@ -127,11 +128,16 @@ export default {
 		position: absolute;
 		bottom: 0;
 		left: 0;
+		vertical-align: bottom;
 
 		button {
 			background: white;
 			padding: 7px;
 			margin: 0 0 5px 5px;
+			
+			svg {
+				fill: black;
+			}
 		}
 	}
 	.mdc-fab .material-icons {
