@@ -8,8 +8,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@material/button": "^2.0.0",
-    "@material/icon-button": "^2.0.0",
     "core-js": "^2.6.5",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
