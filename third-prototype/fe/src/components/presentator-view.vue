@@ -1,5 +1,5 @@
 <template>
-<div class="presentator-view" tabindex="0"
+<div class="presentator-view" ref="presentatorView" tabindex="0"
 	@dragover="dragResourceOver"
 	@keydown.ctrl.187.prevent="increase"
 	@keydown.ctrl.189.prevent="decrease"
@@ -41,6 +41,7 @@ export default {
 	},
 	mounted() {
 		window.addEventListener('unload', this.beforeUnload)
+		this.$refs.presentatorView.focus()
 	},
 	destroyed() {
 		window.removeEventListener('unload', this.beforeUnload)
