@@ -38,10 +38,13 @@ export default {
 			tmpZoomLevel: null,
 			oldTreeNode: null,
 			oldTreeStructure: null,
+			innerHeight: null,
 		}
 	},
 	mounted() {
 		this.largestLevel = this.getLargestLevel(this.structure[0]).reduce((a, b) => a > b ? a : b)
+		window.addEventListener('resize', () => { this.setInnerHeight() })
+		this.setInnerHeight()
 	},
 	methods: {
 		getLargestLevel(layer, sizes = []) {
@@ -80,7 +83,10 @@ export default {
 		goFullscreen() {
 			this.tmpZoomLevel = this.zoomLevel
 			this.zoomLevel = 1
-		}
+		},
+		setInnerHeight() {
+			this.innerHeight = window.innerHeight
+		},
 	},
 	watch: {
 		'$route.query.slideIndex'() {
@@ -99,9 +105,10 @@ export default {
 
 			const { scale } = state.treeStructureActiveTree
 			const newScale = this.zoomLevel || scale
+			const useSmall = this.innerHeight <= 600
 			return {
 				transform: `scale(${newScale})`,
-				'transform-origin': state.treeStructureActiveTree['transform-origin']
+				'transform-origin': state.treeStructureActiveTree[useSmall ? 'small-transform-origin' : 'transform-origin']
 			}
 		}
 	}),
