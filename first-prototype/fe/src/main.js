@@ -9,6 +9,9 @@ import externalStoryView  from './components/external-story-view'
 
 import slides from './components/slides.js'
 
+// const apiUrl = 'http://localhost:3000'
+const apiUrl = 'http://api.maddev.nl/'
+
 // First method:
 // https://stackoverflow.com/questions/2236828/javascript-communication-between-tabs-windows-with-same-origin/12514384#12514384
 // Reason it doesn't work: https://stackoverflow.com/a/35867792
@@ -54,7 +57,7 @@ const store = new Vuex.Store({
 
 Vue.use(new VueSocketIO({
     debug: true,
-    connection: 'http://localhost:3000',
+    connection: apiUrl,
     vuex: {
         store,
         actionPrefix: 'SOCKET_',
@@ -69,3 +72,7 @@ new Vue({
 	store,
 	render: h => h(App),
 }).$mount('#app')
+
+export {
+	apiUrl
+}
