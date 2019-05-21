@@ -37,16 +37,29 @@ export default {
 			})
 			this.$nextTick(() => this.setLinkEvents())
 		},
+		goToUrl(url) {
+			window.open(url, '_blank')
+		},
 		setLinkEvents() {
 			const links = this.$refs.slide.querySelectorAll('[data-link]')
+			const urls = this.$refs.slide.querySelectorAll('[data-url]')
 			links.forEach(link => {
 				link.addEventListener('click', () => this.goToSlide(link.dataset.link))
+			})
+
+			urls.forEach(url => {
+				url.addEventListener('click', () => this.goToUrl(url.dataset.url))
 			})
 		},
 		removeLinkEvents() {
 			const links = this.$refs.slide.querySelectorAll('[data-link]')
+			const urls = this.$refs.slide.querySelectorAll('[data-url]')
 			links.forEach(link => {
 				link.removeEventListener('click', () => this.goToSlide(link.dataset.link))
+			})
+
+			urls.forEach(url => {
+				url.removeEventListener('click', () => this.goToUrl(url.dataset.url))
 			})
 		}
 	},
@@ -71,14 +84,17 @@ export default {
 			max-height: 100vh;
 			width: auto;
 			height: auto;
+			background: white;
 			text {
 				font-family: inherit !important;
 			}
 		}
+		[data-url],
 		[data-link] {
 			cursor: pointer;
 		}
 
+		[data-url].BoundingBox,
 		[data-link].BoundingBox {
 			position: relative;
 			z-index: 1000;
