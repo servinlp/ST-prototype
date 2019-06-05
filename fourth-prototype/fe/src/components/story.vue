@@ -37,16 +37,29 @@ export default {
 			})
 			this.$nextTick(() => this.setLinkEvents())
 		},
+		goToUrl(url) {
+			window.open(url, '_blank')
+		},
 		setLinkEvents() {
 			const links = this.$refs.slide.querySelectorAll('[data-link]')
+			const urls = this.$refs.slide.querySelectorAll('[data-url]')
 			links.forEach(link => {
 				link.addEventListener('click', () => this.goToSlide(link.dataset.link))
+			})
+
+			urls.forEach(url => {
+				url.addEventListener('click', () => this.goToUrl(url.dataset.url))
 			})
 		},
 		removeLinkEvents() {
 			const links = this.$refs.slide.querySelectorAll('[data-link]')
+			const urls = this.$refs.slide.querySelectorAll('[data-url]')
 			links.forEach(link => {
 				link.removeEventListener('click', () => this.goToSlide(link.dataset.link))
+			})
+
+			urls.forEach(url => {
+				url.removeEventListener('click', () => this.goToUrl(url.dataset.url))
 			})
 		}
 	},
