@@ -1,10 +1,14 @@
 <template>
 <div v-on:keydown.delete="goBack" v-on:keydown.left="goBack" v-on:keydown.right="goForward">
 	<div class="story-container">
-		<resource-viewer v-if="fileViewer" :file="fileViewer"></resource-viewer>
-		<story v-if="slideIndex" ref="story"></story>
-		<enter-story-view v-if="!externalView"></enter-story-view>
-		<full-screen v-if="story" v-bind:target="story"></full-screen>
+		<div v-if="!externalView">
+			<story v-if="slideIndex" ref="story"></story>
+			<enter-story-view></enter-story-view>
+			<full-screen v-if="story" v-bind:target="story"></full-screen>
+		</div>
+		<div v-else>
+			<presentator-view></presentator-view>
+		</div>
 	</div>
 </div>
 </template>
@@ -15,10 +19,7 @@ import { mapState } from 'vuex'
 import story from './story'
 import fullScreen from './full-screen'
 import enterStoryView from './enter-story-view'
-import storyControlsScreen from './story-controls-screen'
-import storyNotes from './story-notes'
-import treeStructure from './tree-structure'
-import resourceViewer from './resource-viewer'
+import presentatorView from './presentator-view'
 
 import { apiUrl } from '../main'
 
@@ -27,17 +28,12 @@ export default {
 		story,
 		fullScreen,
 		enterStoryView,
-		storyControlsScreen,
-		storyNotes,
-		treeStructure,
-		resourceViewer,
+		presentatorView,
 	},
 	data() {
 		return {
 			story: null,
 			prevRoute: null,
-			es: null,
-			fileViewer: null,
 		}
 	},
 	sockets: {
@@ -67,16 +63,6 @@ export default {
 			})
 		}
 		this.$store.state.externalView = this.$route.params.room
-
-		this.es = new EventSource(`${apiUrl}stream`)
-		this.es.onerror = () => {
-			setTimeout(() => {
-				this.es = new EventSource(`${apiUrl}stream`)
-			}, 2000)
-		}
-		this.es.addEventListener('receiveFile', e => {
-			this.fileViewer = JSON.parse(e.data)
-		})
 
 		this.$nextTick(() => {
 			this.$nextTick(() => {

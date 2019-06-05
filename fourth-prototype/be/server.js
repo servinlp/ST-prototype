@@ -9,6 +9,7 @@ const multer = require('multer')
 const upload = multer()
 
 const myEmitter = new EventEmitter();
+const questionEmitter = new EventEmitter();
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -31,6 +32,16 @@ app.get('/stream', (req, res) => {
 
 app.post('/unload', (req, res) => {
 	myEmitter.emit('unload', req.body)
+	res.send('true')
+})
+
+app.post('/question', (req, res) => {
+	questionEmitter.emit('question', req.body)
+	res.send('true')
+})
+
+app.post('/question/upvote', (req, res) => {
+	questionEmitter.emit('questionUpvote', req.body)
 	res.send('true')
 })
 
@@ -84,9 +95,25 @@ io.on('connection', function(socket){
 		socket.broadcast.to(roomId).emit('stopRecourseViewing')
 	})
 
+	socket.on('showQuestion', data => {
+		socket.broadcast.to(data.id).emit('showQuestion', data.question)
+	})
+	
+	socket.on('closeQuestion', data => {
+		socket.broadcast.to(data.id).emit('closeQuestion')
+	})
+
 	myEmitter.on('unload', id => {
 		console.log('id', id)
 		socket.broadcast.to(id).emit('closeStoryView')
+	})
+
+	questionEmitter.on('question', data => {
+		socket.emit('getQuestion', data)
+	})
+
+	questionEmitter.on('questionUpvote', data => {
+		socket.emit('upvoteQuestion', data.number)
 	})
 
 	socket.on('disconnect', () => console.log('disconnect'))

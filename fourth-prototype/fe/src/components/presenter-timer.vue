@@ -38,6 +38,8 @@ export default {
 	bottom: 0;
 	left: 0;
 	display: flex;
+	transform: translateX(-110%);
+
 	div {
 		font-size: 2rem;
 	}

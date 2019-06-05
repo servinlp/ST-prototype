@@ -5,6 +5,7 @@
 	@keydown.ctrl.189.prevent="decrease"
 	@keydown.ctrl.48.prevent="toggleFullscreen"
 	@keydown.ctrl.49.prevent="outFullscreen">
+	<question-popup v-if="question"></question-popup>
 	<resource-viewer v-if="fileViewer" :file="fileViewer"></resource-viewer>
 	<drag-and-drop-resources v-if="showDrop" @getFile="gotFile"></drag-and-drop-resources>
 	<tree-structure ref="tree"></tree-structure>
@@ -18,6 +19,7 @@ import story from './story'
 import storyControlsScreen from './story-controls-screen'
 import storyNotes from './story-notes'
 import treeStructure from './tree-structure'
+import questionPopup from './question-popup'
 import dragAndDropResources from './drag-and-drop-resources'
 import resourceViewer from './resource-viewer'
 
@@ -30,6 +32,7 @@ export default {
 		storyControlsScreen,
 		storyNotes,
 		treeStructure,
+		questionPopup,
 		dragAndDropResources,
 		resourceViewer,
 	},
@@ -82,7 +85,8 @@ export default {
 		},
 	},
 	computed: mapState([
-		'slideIndex'
+		'slideIndex',
+		'question'
 	])
 }
 </script>

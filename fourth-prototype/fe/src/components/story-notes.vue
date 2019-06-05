@@ -4,16 +4,19 @@
 	<button class="larger" @click="larger">A</button>
 	<p :style="notesStyle">{{slides[slideIndex].notes}}</p>
 	<presenter-timer></presenter-timer>
+	<presenter-questions></presenter-questions>
 </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import presenterQuestions from './presenter-questions'
 import presenterTimer from './presenter-timer'
 
 export default {
 	components: {
 		presenterTimer,
+		presenterQuestions,
 	},
 	data() {
 		return {
@@ -60,7 +63,8 @@ export default {
 		right: 0;
 		font-size: 1.2rem;
 	}
-	p {
+	
+	> p {
 		height: 100vh;
 		overflow: auto;
 		background: white;
