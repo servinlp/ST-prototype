@@ -6,6 +6,7 @@
 			<div class="single-question" v-on:click="selectQuestion(q)" v-for="(q, index) in questions" :key="index">
 				{{q.question}}
 				<div class="votes">
+					<p>Van: {{q.from}}</p>
 					<button class="mdc-icon-button material-icons" disabled>compare_arrows</button>{{q.upvotes}}
 				</div>
 			</div>
@@ -24,10 +25,12 @@ export default {
 		return {
 			questionsOpen: false,
 			questions: [{
-				question: 'laa',
+				question: 'Wat heeft Capgemini voor de ontwikkeling van AI?',
+				from: 'Servin',
 				upvotes: 1,
 			}, {
-				question: 'laa',
+				question: 'Waarom is de afdeling bezig met het ontwikkelen van deze technologiën als hier nog geen duidelijke case voor is?',
+				from: 'Tom',
 				upvotes: 4
 			}
 		],
@@ -87,6 +90,7 @@ export default {
 	transform: scale(0);
 	transform-origin: left bottom;
 	transition: transform 0.3s ease;
+	background: white;
 
 	&::after {
 		content: "";
@@ -177,6 +181,11 @@ export default {
 	position: absolute;
     right: 10px;
     bottom: 10px;
+
+	p {
+		display: inline-block;
+    	margin: 0;
+	}
 
 	button {
 		padding: 0;

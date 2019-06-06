@@ -2,6 +2,9 @@
 <div class="question-popup" ref="popup" @keydown.esc="close" tabindex="0">
 	{{question.question}}
 	<button v-on:click="close" class="close mdc-icon-button material-icons">close</button>
+	<div class="from">
+		<p>Van: {{question.from}}</p>
+	</div>
 </div>	
 </template>
 
@@ -49,6 +52,18 @@ export default {
 		position: absolute;
 		top: 0;
 		right: 0;
+	}
+}
+
+.from {
+	position: absolute;
+    right: 40px;
+    bottom: 40px;
+
+	p {
+		display: inline-block;
+    	margin: 0;
+		font-size: 24px;
 	}
 }
 </style>
