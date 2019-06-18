@@ -39,6 +39,7 @@ export default {
 	left: 0;
 	display: flex;
 	transform: translateX(-110%);
+	color: white;
 
 	div {
 		font-size: 2rem;

@@ -2,7 +2,7 @@ export default [{
 	current: '1',
 	'transform-origin': '660px -20px',
 	'small-transform-origin': '320px -20px',
-	scale: 6,
+	scale: 5,
 	children: [
 		{
 			current: '2',
@@ -12,27 +12,105 @@ export default [{
 			children: [
 				{
 					current: '3',
-					'transform-origin': '-40px 177px',
+					'transform-origin': '-150px 177px',
 					'small-transform-origin': '-21px 92px',
-					scale: 6,
+					scale: 2,
+					width: '43%',
 					children: [
 						{
 							current: '3.1',
-							'transform-origin': '-40px 277px',
+							'transform-origin': '-90px 247px',
 							'small-transform-origin': '-21px 148px',
-							scale: 6,
+							scale: 5,
+							children: []
+						},
+						{
+							current: '3.2',
+							'transform-origin': '110px 247px',
+							'small-transform-origin': '-21px 202px',
+							scale: 5,
+							width: '40%',
 							children: [
 								{
-									current: '3.2',
-									'transform-origin': '-40px 377px',
+									current: '3.2.1',
+									'transform-origin': '110px 337px',
 									'small-transform-origin': '-21px 202px',
-									scale: 6,
+									scale: 5,
+									width: '100%',
+									children: []
+								},
+								{
+									current: '3.2.2',
+									'transform-origin': '110px 437px',
+									'small-transform-origin': '-21px 202px',
+									scale: 5,
+									width: '100%',
+									children: []
+								},
+								{
+									current: '3.2.3',
+									'transform-origin': '110px 537px',
+									'small-transform-origin': '-21px 202px',
+									scale: 5,
+									width: '100%',
+									children: []
+								},
+							]
+						},
+						{
+							current: '3.3',
+							'transform-origin': '350px 247px',
+							'small-transform-origin': '350px 247px',
+							scale: 5,
+							width: '30%',
+							children: [
+								{
+									current: '3.3.1',
+									'transform-origin': '350px 337px',
+									'small-transform-origin': '-21px 258px',
+									scale: 5,
+									width: '100%',
+									children: []
+								},
+								{
+									current: '3.3.2',
+									'transform-origin': '350px 437px',
+									'small-transform-origin': '-21px 258px',
+									scale: 5,
+									width: '100%',
+									children: []
+								}
+							]
+						}
+					]
+				},
+				{
+					current: '4',
+					'transform-origin': '660px 147px',
+					'small-transform-origin': '66px 92px',
+					scale: 5,
+					width: '14%',
+					children: [
+						{
+							current: '4.1',
+							'transform-origin': '660px 257px',
+							'small-transform-origin': '66px 148px',
+							scale: 5,
+							width: '100%',
+							children: [
+								{
+									current: '4.2',
+									'transform-origin': '660px 347px',
+									'small-transform-origin': '66px 148px',
+									scale: 5,
+									width: '100%',
 									children: [
 										{
-											current: '3.3',
-											'transform-origin': '-40px 477px',
-											'small-transform-origin': '-21px 258px',
-											scale: 6,
+											current: '4.3',
+											'transform-origin': '660px 437px',
+											'small-transform-origin': '66px 148px',
+											scale: 5,
+											width: '100%',
 											children: []
 										}
 									]
@@ -42,235 +120,73 @@ export default [{
 					]
 				},
 				{
-					current: '4',
-					'transform-origin': '130px 177px',
-					'small-transform-origin': '66px 92px',
-					scale: 6,
-					children: [
-						{
-							current: '4.1',
-							'transform-origin': '130px 277px',
-							'small-transform-origin': '66px 148px',
-							scale: 6,
-							children: []
-						}
-					]
-				},
-				{
 					current: '5',
-					'transform-origin': '300px 177px',
+					'transform-origin': '1120px 177px',
 					'small-transform-origin': '150px 92px',
-					scale: 6,
+					scale: 3,
+					width:'34%',
 					children: [
 						{
 							current: '5.1',
-							'transform-origin': '300px 277px',
+							'transform-origin': '850px 237px',
 							'small-transform-origin': '150px 148px',
-							scale: 6,
+							scale: 5,
+							width: '33%',
 							children: []
-						}
+						},
+						{
+							current: '5.2',
+							'transform-origin': '1040px 277px',
+							'small-transform-origin': '150px 148px',
+							scale: 5,
+							width: '33%',
+							children: []
+						},
+						{
+							current: '5.3',
+							'transform-origin': '1220px 277px',
+							'small-transform-origin': '150px 148px',
+							scale: 5,
+							width: '33%',
+							children: [
+								{
+									current: '5.3.1',
+									'transform-origin': '1220px 337px',
+									'small-transform-origin': '150px 148px',
+									scale: 5,
+									width: '100%',
+									children: []
+								},
+								{
+									current: '5.3.2',
+									'transform-origin': '1220px 427px',
+									'small-transform-origin': '150px 148px',
+									scale: 5,
+									width: '100%',
+									children: []
+								},
+							]
+						},
 					]
 				},
 				{
 					current: '6',
-					'transform-origin': '470px 177px',
+					'transform-origin': '1390px 177px',
 					'small-transform-origin': '233px 92px',
-					scale: 6,
+					scale: 5,
 					children: [
 						{
 							current: '6.1',
-							'transform-origin': '470px 277px',
+							'transform-origin': '1390px 247px',
 							'small-transform-origin': '233px 148px',
-							scale: 6,
+							scale: 5,
 							children: [
 								{
 									current: '6.2',
-									'transform-origin': '470px 377px',
+									'transform-origin': '1390px 347px',
 									'small-transform-origin': '233px 202px',
-									scale: 6,
+									scale: 5,
 									children: []
-								}
-							]
-						}
-					]
-				},
-				{
-					current: '7',
-					'transform-origin': '660px 177px',
-					'small-transform-origin': '320px 92px',
-					scale: 6,
-					children: [
-						{
-							current: '7.1',
-							'transform-origin': '660px 277px',
-							'small-transform-origin': '320px 148px',
-							scale: 6,
-							children: [
-								{
-									current: '7.2',
-									'transform-origin': '660px 377px',
-									'small-transform-origin': '320px 202px',
-									scale: 6,
-									children: [
-										{
-											current: '7.3',
-											'transform-origin': '660px 477px',
-											'small-transform-origin': '320px 258px',
-											scale: 6,
-											children: [
-												// {
-												// 	current: '12',
-												// 	children: [
-														
-												// 	]
-												// }
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				},
-				{
-					current: '8',
-					'transform-origin': '830px 177px',
-					'small-transform-origin': '397px 92px',
-					scale: 6,
-					children: [
-						{
-							current: '8.1',
-							'transform-origin': '830px 277px',
-							'small-transform-origin': '397px 148px',
-							scale: 6,
-							children: [
-								{
-									current: '8.2',
-									'transform-origin': '830px 377px',
-									'small-transform-origin': '397px 202px',
-									scale: 6,
-									children: [
-										{
-											current: '8.3',
-											'transform-origin': '830px 477px',
-											'small-transform-origin': '397px 258px',
-											scale: 6,
-											children: [
-												{
-													current: '8.4',
-													'transform-origin': '830px 577px',
-													'small-transform-origin': '397px 312px',
-													scale: 6,
-													children: [
-														// {
-														// 	current: '12',
-														// 	children: [
-																
-														// 	]
-														// }
-													]
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				},
-				{
-					current: '9',
-					'transform-origin': '1000px 177px',
-					'small-transform-origin': '487px 92px',
-					scale: 6,
-					children: [
-						{
-							current: '9.1',
-							'transform-origin': '1000px 277px',
-							'small-transform-origin': '487px 148px',
-							scale: 6,
-							children: [
-								{
-									current: '9.2',
-									'transform-origin': '1000px 377px',
-									'small-transform-origin': '487px 202px',
-									scale: 6,
-									children: [
-										// {
-										// 	current: '12',
-										// 	children: [
-												
-										// 	]
-										// }
-									]
-								}
-							]
-						}
-					]
-				},
-				{
-					current: '10',
-					'transform-origin': '1170px 177px',
-					'small-transform-origin': '572px 92px',
-					scale: 6,
-					children: [
-						{
-							current: '10.1',
-							'transform-origin': '1170px 277px',
-							'small-transform-origin': '572px 148px',
-							scale: 6,
-							children: [
-								{
-									current: '10.2',
-									'transform-origin': '1170px 377px',
-									'small-transform-origin': '572px 202px',
-									scale: 6,
-									children: [
-										// {
-										// 	current: '12',
-										// 	children: [
-												
-										// 	]
-										// }
-									]
-								}
-							]
-						}
-					]
-				},
-				{
-					current: '11',
-					'transform-origin': '1350px 177px',
-					'small-transform-origin': '652px 92px',
-					scale: 6,
-					children: [
-						{
-							current: '11.1',
-							'transform-origin': '1350px 277px',
-							'small-transform-origin': '652px 148px',
-							scale: 6,
-							children: [
-								{
-									current: '11.2',
-									'transform-origin': '1350px 377px',
-									'small-transform-origin': '652px 202px',
-									scale: 6,
-									children: [
-										{
-											current: '11.3',
-											'transform-origin': '1350px 477px',
-											'small-transform-origin': '652px 258px',
-											scale: 6,
-											children: [
-												// {
-												// 	current: '12',
-												// 	children: [
-														
-												// 	]
-												// }
-											]
-										}
-									]
 								}
 							]
 						}
